@@ -30,6 +30,8 @@ class YAWS extends \CApplicationComponent
     )
   );
 
+  public $s3ClassName = '\\AmazonS3';
+
   /**
    * Load AWS classes if needed.
    */
@@ -56,7 +58,7 @@ class YAWS extends \CApplicationComponent
     $this->setupAutoload();
 
     $options = $this->connections['s3'][$connectionKey];
-    $ret = new \AmazonS3($options);
+    $ret = new $this->s3ClassName($options);
 
     return $ret;
   }
